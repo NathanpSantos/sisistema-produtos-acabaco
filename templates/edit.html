@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Produto{% endblock %}
+
+{% block content %}
+<h1 class="text-center" style="color: #0055A3;">Editar Produto</h1>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="produto" class="form-label">Produto</label>
+        <input type="text" class="form-control" id="produto" name="produto" value="{{ item.produto }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="categoria" class="form-label">Categoria</label>
+        <select class="form-control" id="categoria" name="categoria" required>
+            <option value="Bacias" {% if item.categoria == 'Bacias' %}selected{% endif %}>Bacias</option>
+            <option value="Torneiras" {% if item.categoria == 'Torneiras' %}selected{% endif %}>Torneiras</option>
+            <option value="Chuveiros" {% if item.categoria == 'Chuveiros' %}selected{% endif %}>Chuveiros</option>
+            <option value="Armários" {% if item.categoria == 'Armários' %}selected{% endif %}>Armários</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="sku" class="form-label">SKU</label>
+        <input type="text" class="form-control" id="sku" name="sku" value="{{ item.sku }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="ean" class="form-label">EAN</label>
+        <input type="text" class="form-control" id="ean" name="ean" value="{{ item.ean }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="quantidade" class="form-label">Quantidade</label>
+        <input type="number" class="form-control" id="quantidade" name="quantidade" value="{{ item.quantidade }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="corredor" class="form-label">Corredor</label>
+        <input type="text" class="form-control" id="corredor" name="corredor" value="{{ item.corredor }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ item.descricao }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="tipo_venda" class="form-label">Tipo de Venda</label>
+        <select class="form-control" id="tipo_venda" name="tipo_venda">
+            <option value="Normal" {% if item.tipo_venda == 'Normal' %}selected{% endif %}>Normal</option>
+            <option value="Encomenda" {% if item.tipo_venda == 'Encomenda' %}selected{% endif %}>Encomenda</option>
+        </select>
+    </div>
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="top_30" name="top_30" {% if item.top_30 %}checked{% endif %}>
+        <label class="form-check-label" for="top_30">Top 30</label>
+    </div>
+    <div class="mb-3">
+        <label for="responsavel" class="form-label">Responsável</label>
+        <input type="text" class="form-control" id="responsavel" name="responsavel" value="{{ item.responsavel }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary" style="background-color: #E50028;">Salvar Alterações</button>
+</form>
+{% endblock %}

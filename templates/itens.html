@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens Cadastrados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Ajusta o alinhamento da tabela */
+        table th, table td {
+            text-align: center; /* Centraliza o texto nas células */
+            vertical-align: middle; /* Centraliza verticalmente */
+        }
+
+        /* Garante que o rodapé fique na parte inferior da página */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header class="text-center p-3" style="background-color: #E50028;">
+        <img src="{{ url_for('static', filename='sodimac_logo.png') }}" alt="Sodimac Logo" style="width: 150px;">
+    </header>
+
+    <!-- Conteúdo -->
+    <div class="container mt-5">
+        <h1 class="text-center" style="color: #0055A3;">Itens Cadastrados</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Produto</th>
+                    <th>Categoria</th>
+                    <th>SKU</th>
+                    <th>EAN</th>
+                    <th>Quantidade</th>
+                    <th>Corredor</th>
+                    <th>Descrição</th>
+                    <th>Tipo de Venda</th>
+                    <th>Top 30</th>
+                    <th>Responsável</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop através dos itens cadastrados -->
+                {% for item in itens %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.produto }}</td>
+                    <td>{{ item.categoria }}</td>
+                    <td>{{ item.sku }}</td>
+                    <td>{{ item.ean }}</td>
+                    <td>{{ item.quantidade }}</td>
+                    <td>{{ item.corredor }}</td>
+                    <td>{{ item.descricao }}</td>
+                    <td>{{ item.tipo_venda }}</td>
+                    <td>{{ 'Sim' if item.top_30 else 'Não' }}</td>
+                    <td>{{ item.responsavel }}</td>
+                    <td>
+                        <!-- Botão de Editar -->
+                        <a href="{{ url_for('edit_item', id=item.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <!-- Botão de Excluir -->
+                        <a href="{{ url_for('delete_item', id=item.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Botão para voltar à página inicial -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Voltar</a>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="text-center mt-5 p-3" style="background-color: #0055A3; color: white;">
+        &copy; 2024 - Sodimac Homecenter
+    </footer>
+
+</body>
+</html>

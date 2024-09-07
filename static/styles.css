@@ -1,0 +1,73 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Adiciona altura total para manter o rodapé no lugar */
+}
+
+h1 {
+    color: #0055A3;
+}
+
+/* Estilos do cabeçalho */
+header {
+    text-align: center;
+    padding: 3px; /* Ajusta o preenchimento */
+    background-color: #E50028;
+}
+
+header img {
+    width: 150px; /* Define uma largura fixa para o logo */
+    max-width: 100%; /* Garante que o logo não ultrapasse a largura máxima */
+}
+
+/* Estilos da tabela */
+table {
+    width: 100%; /* Garante que a tabela ocupe toda a largura disponível */
+}
+
+table th, table td {
+    text-align: center; /* Centraliza o texto nas células */
+    vertical-align: middle; /* Centraliza verticalmente */
+}
+
+/* Estilos do rodapé */
+footer {
+    background-color: #0055A3;
+    color: white;
+    text-align: center;
+    padding: 3px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Container principal */
+.container {
+    flex: 1; /* Flexível para ocupar espaço disponível */
+    margin-top: 5px; /* Margem superior */
+}
+
+/* Botões */
+.btn {
+    background-color: #E50028; /* Cor de fundo para botões */
+    border-color: #E50028; /* Cor da borda para botões */
+}
+
+.btn-warning {
+    background-color: yellow; /* Cor de fundo para botões de editar */
+    border-color: black; /* Cor da borda para botões de editar */
+}
+
+.btn-danger {
+    background-color: red; /* Cor de fundo para botões de excluir */
+    border-color: darkred; /* Cor da borda para botões de excluir */
+}
+
+/* Link de retorno */
+.return-link {
+    display: block;
+    text-align: center;
+    margin-top: 4px;
+}

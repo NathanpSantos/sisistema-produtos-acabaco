@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro de Produto{% endblock %}
+
+{% block content %}
+<h1 class="text-center" style="color: #0055A3;">Cadastro de Produto</h1>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="produto" class="form-label">Produto</label>
+        <input type="text" class="form-control" id="produto" name="produto" required>
+    </div>
+    <div class="mb-3">
+        <label for="categoria" class="form-label">Categoria</label>
+        <select class="form-control" id="categoria" name="categoria" required>
+            <option value="Bacias">Bacias</option>
+            <option value="Torneiras">Torneiras</option>
+            <option value="Chuveiros">Chuveiros</option>
+            <option value="Armários">Armários</option>
+        </select>
+    </div>    
+    <div class="mb-3">
+        <label for="sku" class="form-label">SKU</label>
+        <input type="text" class="form-control" id="sku" name="sku" required>
+    </div>
+    <div class="mb-3">
+        <label for="ean" class="form-label">EAN</label>
+        <input type="text" class="form-control" id="ean" name="ean" required>
+    </div>
+    <div class="mb-3">
+        <label for="quantidade" class="form-label">Quantidade</label>
+        <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+    </div>
+    <div class="mb-3">
+        <label for="corredor" class="form-label">Corredor</label>
+        <input type="text" class="form-control" id="corredor" name="corredor" required>
+    </div>
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="tipo_venda" class="form-label">Tipo de Venda</label>
+        <select class="form-control" id="tipo_venda" name="tipo_venda">
+            <option value="Normal">Normal</option>
+            <option value="Encomenda">Encomenda</option>
+        </select>
+    </div>
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="top_30" name="top_30">
+        <label class="form-check-label" for="top_30">Top 30</label>
+    </div>
+    <div class="mb-3">
+        <label for="responsavel" class="form-label">Responsável</label>
+        <input type="text" class="form-control" id="responsavel" name="responsavel" required>
+    </div>
+    <button type="submit" class="btn btn-primary" style="background-color: #E50028;">Cadastrar Produto</button>
+</form>
+{% endblock %}

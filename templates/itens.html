@@ -33,6 +33,17 @@
             bottom: 0;
             width: 100%;
         }
+
+        /* Adiciona rolagem para a tabela */
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Estilo para o campo de pesquisa */
+        #searchInput {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -46,48 +57,54 @@
     <div class="container mt-5">
         <h1 class="text-center" style="color: #0055A3;">Itens Cadastrados</h1>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Produto</th>
-                    <th>Categoria</th>
-                    <th>SKU</th>
-                    <th>EAN</th>
-                    <th>Quantidade</th>
-                    <th>Corredor</th>
-                    <th>Descrição</th>
-                    <th>Tipo de Venda</th>
-                    <th>Top 30</th>
-                    <th>Responsável</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Loop através dos itens cadastrados -->
-                {% for item in itens %}
-                <tr>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.produto }}</td>
-                    <td>{{ item.categoria }}</td>
-                    <td>{{ item.sku }}</td>
-                    <td>{{ item.ean }}</td>
-                    <td>{{ item.quantidade }}</td>
-                    <td>{{ item.corredor }}</td>
-                    <td>{{ item.descricao }}</td>
-                    <td>{{ item.tipo_venda }}</td>
-                    <td>{{ 'Sim' if item.top_30 else 'Não' }}</td>
-                    <td>{{ item.responsavel }}</td>
-                    <td>
-                        <!-- Botão de Editar -->
-                        <a href="{{ url_for('edit_item', id=item.id) }}" class="btn btn-warning btn-sm">Editar</a>
-                        <!-- Botão de Excluir -->
-                        <a href="{{ url_for('delete_item', id=item.id) }}" class="btn btn-danger btn-sm">Excluir</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <!-- Barra de Pesquisa -->
+        <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar itens..." onkeyup="filterTable()">
+
+        <!-- Tabela com rolagem -->
+        <div class="table-container">
+            <table class="table table-striped" id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>SKU</th>
+                        <th>EAN</th>
+                        <th>Quantidade</th>
+                        <th>Corredor</th>
+                        <th>Descrição</th>
+                        <th>Tipo de Venda</th>
+                        <th>Top 30</th>
+                        <th>Responsável</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop através dos itens cadastrados -->
+                    {% for item in itens %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.produto }}</td>
+                        <td>{{ item.categoria }}</td>
+                        <td>{{ item.sku }}</td>
+                        <td>{{ item.ean }}</td>
+                        <td>{{ item.quantidade }}</td>
+                        <td>{{ item.corredor }}</td>
+                        <td>{{ item.descricao }}</td>
+                        <td>{{ item.tipo_venda }}</td>
+                        <td>{{ 'Sim' if item.top_30 else 'Não' }}</td>
+                        <td>{{ item.responsavel }}</td>
+                        <td>
+                            <!-- Botão de Editar -->
+                            <a href="{{ url_for('edit_item', id=item.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <!-- Botão de Excluir -->
+                            <a href="{{ url_for('delete_item', id=item.id) }}" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
         <!-- Botão para voltar à página inicial -->
         <div class="text-center mt-4">
@@ -100,5 +117,25 @@
         &copy; 2024 - Sodimac Homecenter
     </footer>
 
+    <script>
+        function filterTable() {
+            let input = document.getElementById("searchInput");
+            let filter = input.value.toLowerCase();
+            let table = document.getElementById("itemsTable");
+            let trs = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < trs.length; i++) {
+                let tds = trs[i].getElementsByTagName("td");
+                let found = false;
+                for (let j = 0; j < tds.length; j++) {
+                    if (tds[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+                trs[i].style.display = found ? "" : "none";
+            }
+        }
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 import os
 import tempfile
-from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -11,8 +11,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///itens.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
 db = SQLAlchemy(app)
+
+# Inicialize Flask-Migrate após definir app e db
+migrate = Migrate(app, db)
 
 # Definição do modelo 'Item'
 class Item(db.Model):
@@ -31,7 +33,7 @@ class Item(db.Model):
 with app.app_context():
     db.create_all()
 
-# Página inicial
+# Rota principal
 @app.route('/')
 def index():
     return render_template('index.html')

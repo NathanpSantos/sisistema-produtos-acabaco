@@ -4,16 +4,21 @@ import pandas as pd
 import os
 import tempfile
 from flask_migrate import Migrate
+import os
+from flask import Flask
+
 
 app = Flask(__name__)
 
-# Configuração do banco de dados com PostgreSQL no Heroku
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///itens.db')
+# Corrigir URL do banco de dados se estiver usando Heroku PostgreSQL
+uri = os.getenv('DATABASE_URL')  # Pega a URL do banco de dados do Heroku
+if uri and uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = uri or 'sqlite:///itens.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-
-# Inicialize Flask-Migrate após definir app e db
 migrate = Migrate(app, db)
 
 # Definição do modelo 'Item'

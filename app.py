@@ -3,11 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 import os
 import tempfile
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# Configuração do banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///itens.db'
+# Configuração do banco de dados com PostgreSQL no Heroku
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///itens.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
 db = SQLAlchemy(app)
 
 # Definição do modelo 'Item'

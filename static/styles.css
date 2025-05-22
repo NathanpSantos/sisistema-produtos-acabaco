@@ -1,73 +1,107 @@
-/* Estilos gerais */
-body {
+/* Aplica fundo escuro total na página */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0c1a2b;
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100%; /* Adiciona altura total para manter o rodapé no lugar */
 }
 
-h1 {
-    color: #0055A3;
-}
-
-/* Estilos do cabeçalho */
+/* Cabeçalho */
 header {
+    background-color: #0f172a;
+    padding: 20px;
     text-align: center;
-    padding: 3px; /* Ajusta o preenchimento */
-    background-color: #E50028;
 }
 
 header img {
-    width: 150px; /* Define uma largura fixa para o logo */
-    max-width: 100%; /* Garante que o logo não ultrapasse a largura máxima */
+    width: 160px;
 }
 
-/* Estilos da tabela */
+/* Conteúdo principal */
+.container.conteudo-principal {
+    flex: 1;
+    margin: 20px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #102032, #162a45, #1f365a);
+    color: rgb(89, 94, 138);
+    border-radius: 15px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+h1 {
+    color: #00bfff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Tabelas */
 table {
-    width: 100%; /* Garante que a tabela ocupe toda a largura disponível */
+    width: 100%;
+    color: white;
 }
 
 table th, table td {
-    text-align: center; /* Centraliza o texto nas células */
-    vertical-align: middle; /* Centraliza verticalmente */
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
 }
 
-/* Estilos do rodapé */
+/* Rodapé */
 footer {
-    background-color: #0055A3;
+    background-color: #0f172a;
     color: white;
     text-align: center;
-    padding: 3px;
-    position: relative;
-    bottom: 0;
+    padding: 10px;
     width: 100%;
-}
-
-/* Container principal */
-.container {
-    flex: 1; /* Flexível para ocupar espaço disponível */
-    margin-top: 5px; /* Margem superior */
 }
 
 /* Botões */
 .btn {
-    background-color: #E50028; /* Cor de fundo para botões */
-    border-color: #E50028; /* Cor da borda para botões */
+    background-color: #0055A3;
+    border-color: #0055A3;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #003f7f;
+    border-color: #003f7f;
 }
 
 .btn-warning {
-    background-color: yellow; /* Cor de fundo para botões de editar */
-    border-color: black; /* Cor da borda para botões de editar */
+    background-color: #ffc107;
+    border-color: #e0a800;
+    color: black;
 }
 
 .btn-danger {
-    background-color: red; /* Cor de fundo para botões de excluir */
-    border-color: darkred; /* Cor da borda para botões de excluir */
+    background-color: #dc3545;
+    border-color: #c82333;
+    color: white;
 }
 
-/* Link de retorno */
 .return-link {
     display: block;
     text-align: center;
-    margin-top: 4px;
+    margin-top: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header img {
+        width: 120px;
+    }
+
+    .container.conteudo-principal {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
 }
